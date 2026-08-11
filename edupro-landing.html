@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduPro | Educación con Propósito CR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1E3C;
+    --navy-deep:#071427;
+    --gold:#C9A24B;
+    --gold-soft:#E4D3A3;
+    --paper:#F6F3EC;
+    --ink:#1C2230;
+    --slate:#5F6675;
+    --line: rgba(11,30,60,0.14);
+    --radius: 2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .display{font-family:'Newsreader', serif;}
+  .mono{font-family:'IBM Plex Mono', monospace; letter-spacing:0.04em;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,243,236,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 28px;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Newsreader', serif; font-weight:600; font-size:1.15rem; color:var(--navy);}
+  .brand .seal{
+    width:30px; height:30px; border-radius:50%;
+    border:1.5px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace; font-size:0.65rem; color:var(--gold);
+    flex-shrink:0;
+  }
+  .brand .seal-img{width:28px; height:28px; border-radius:50%; border:1.5px solid var(--gold); object-fit:cover; flex-shrink:0; background:#fff;}
+  nav.links{display:flex; gap:28px; font-size:0.88rem; font-weight:500;}
+  nav.links a{text-decoration:none; color:var(--slate); transition:color .2s;}
+  nav.links a:hover{color:var(--navy);}
+  .cta-small{
+    background:var(--navy); color:var(--paper); padding:9px 18px;
+    font-size:0.82rem; font-weight:600; text-decoration:none;
+    border-radius:var(--radius); border:1px solid var(--navy);
+    white-space:nowrap;
+  }
+  .mobile-hide{display:flex;}
+  @media (max-width:760px){ .mobile-hide{display:none;} }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color:var(--paper);
+    padding:88px 0 96px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(201,162,75,0.05) 0px, rgba(201,162,75,0.05) 1px, transparent 1px, transparent 42px);
+    pointer-events:none;
+  }
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center; position:relative;}
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr; gap:48px;} }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.14em;
+    color:var(--gold-soft); text-transform:uppercase; margin-bottom:18px;
+    opacity:0; animation:riseIn .7s ease forwards;
+  }
+  h1.hero-title{
+    font-family:'Newsreader', serif; font-weight:500; font-size:clamp(2.1rem, 4.4vw, 3.2rem);
+    line-height:1.18; letter-spacing:-0.01em; margin-bottom:22px;
+    opacity:0; animation:riseIn .7s ease .08s forwards;
+  }
+  h1.hero-title em{font-style:italic; color:var(--gold-soft);}
+  .hero-sub{
+    font-size:1.05rem; color:rgba(246,243,236,0.78); max-width:46ch; margin-bottom:34px;
+    opacity:0; animation:riseIn .7s ease .16s forwards;
+  }
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; opacity:0; animation:riseIn .7s ease .24s forwards;}
+  .btn-primary{
+    background:var(--gold); color:var(--navy-deep); font-weight:700; font-size:0.92rem;
+    padding:14px 26px; text-decoration:none; border-radius:var(--radius);
+    border:1px solid var(--gold);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(201,162,75,0.25);}
+  .btn-ghost{
+    color:var(--paper); font-weight:600; font-size:0.92rem; padding:14px 22px;
+    text-decoration:none; border:1px solid rgba(246,243,236,0.35); border-radius:var(--radius);
+    transition:border-color .18s ease, background .18s ease;
+  }
+  .btn-ghost:hover{border-color:var(--gold-soft); background:rgba(246,243,236,0.06);}
+
+  @keyframes riseIn{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ---- Signature: the Expediente (credential dossier) card ---- */
+  .expediente{
+    background:var(--paper); color:var(--ink);
+    border-radius:3px;
+    padding:30px 28px 26px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.35);
+    position:relative;
+    transform:rotate(1.2deg);
+    opacity:0; animation:cardIn .8s ease .3s forwards;
+  }
+  @keyframes cardIn{ from{opacity:0; transform:rotate(1.2deg) translateY(18px);} to{opacity:1; transform:rotate(1.2deg) translateY(0);} }
+  .expediente::after{
+    content:""; position:absolute; top:16px; right:16px; width:52px; height:52px;
+    border:1.5px dashed var(--gold); border-radius:50%;
+  }
+  .expediente-head{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:18px;}
+  .expediente-folio{font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--slate); letter-spacing:0.06em;}
+  .expediente-title{font-family:'Newsreader', serif; font-size:1.35rem; font-weight:600; color:var(--navy); margin:4px 0 2px;}
+  .expediente-row{
+    display:flex; justify-content:space-between; padding:9px 0;
+    border-bottom:1px solid var(--line); font-size:0.86rem;
+  }
+  .expediente-row span:first-child{color:var(--slate);}
+  .expediente-row span:last-child{font-weight:600; color:var(--navy);}
+  .expediente-stamp{
+    margin-top:20px; display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--gold);
+    border:1px solid var(--gold); padding:6px 12px; border-radius:20px;
+  }
+  .expediente-stamp .dot{width:6px; height:6px; border-radius:50%; background:var(--gold);}
+
+  /* ---------- Credentials strip ---------- */
+  .credentials{
+    background:var(--navy-deep); border-top:1px solid rgba(201,162,75,0.2);
+    padding:22px 0;
+  }
+  .cred-row{display:flex; flex-wrap:wrap; gap:32px; justify-content:center; align-items:center;}
+  .cred-item{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.08em;
+    color:rgba(246,243,236,0.65); text-transform:uppercase;
+  }
+
+  /* ---------- Section shared ---------- */
+  section{padding:88px 0;}
+  .section-eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.12em;
+    color:var(--gold); text-transform:uppercase; margin-bottom:14px;
+  }
+  h2{font-family:'Newsreader', serif; font-weight:500; font-size:clamp(1.6rem, 3vw, 2.3rem); color:var(--navy); margin-bottom:18px; max-width:22ch;}
+  .lead{color:var(--slate); font-size:1.02rem; max-width:60ch; margin-bottom:44px;}
+
+  /* ---------- Problem / method ---------- */
+  .method-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  @media (max-width:800px){ .method-grid{grid-template-columns:1fr;} }
+  .method-card{background:var(--paper); padding:32px 28px;}
+  .method-letter{font-family:'Newsreader', serif; font-style:italic; font-size:1.6rem; color:var(--gold); margin-bottom:14px;}
+  .method-card h3{font-size:1.1rem; font-weight:600; color:var(--navy); margin-bottom:10px;}
+  .method-card p{color:var(--slate); font-size:0.92rem;}
+
+  /* ---------- Programs ---------- */
+  .programs{background:var(--navy); color:var(--paper);}
+  .programs h2{color:var(--paper);}
+  .programs .lead{color:rgba(246,243,236,0.7);}
+  .program-list{display:flex; flex-direction:column; border-top:1px solid rgba(246,243,236,0.15);}
+  .program-row{
+    display:grid; grid-template-columns:70px 1fr auto; gap:20px; align-items:center;
+    padding:26px 0; border-bottom:1px solid rgba(246,243,236,0.15);
+  }
+  @media (max-width:700px){ .program-row{grid-template-columns:1fr; gap:8px;} .program-row .p-num{display:none;} }
+  .p-num{font-family:'IBM Plex Mono', monospace; color:var(--gold); font-size:0.85rem;}
+  .p-name{font-family:'Newsreader', serif; font-size:1.25rem; font-weight:500;}
+  .p-desc{color:rgba(246,243,236,0.65); font-size:0.9rem; margin-top:4px; max-width:52ch;}
+  .p-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--gold-soft);
+    border:1px solid rgba(201,162,75,0.4); padding:5px 12px; border-radius:20px; white-space:nowrap; justify-self:start;
+  }
+  @media (max-width:700px){ .p-tag{justify-self:start; margin-top:6px;} }
+
+  /* ---- Package course grid ---- */
+  .package-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; flex-wrap:wrap; gap:10px;}
+  .package-name{font-family:'Newsreader', serif; font-size:1.5rem; font-weight:500;}
+  .package-total{font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:var(--gold-soft);}
+  .course-grid{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(246,243,236,0.15); border:1px solid rgba(246,243,236,0.15); margin:20px 0 30px;}
+  @media (max-width:700px){ .course-grid{grid-template-columns:1fr;} }
+  .course-row{background:var(--navy); padding:16px 18px; display:flex; gap:12px; align-items:flex-start;}
+  .course-num{font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--gold); flex-shrink:0; padding-top:2px;}
+  .course-name{font-size:0.9rem; font-weight:600;}
+  .course-hours{font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:rgba(246,243,236,0.55); margin-top:3px;}
+
+  /* ---------- CTA ---------- */
+  .final-cta{background:var(--paper); text-align:center;}
+  .final-cta .wrap{max-width:640px;}
+  .final-cta h2{margin:0 auto 16px; max-width:none;}
+  .final-cta .lead{margin:0 auto 34px;}
+
+  footer{
+    background:var(--navy-deep); color:rgba(246,243,236,0.55);
+    padding:36px 0; font-size:0.82rem;
+  }
+  .foot-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <div class="brand"><img src="logo-icon.png" alt="EduPro" class="seal-img"> EduPro</div>
+    <nav class="links mobile-hide">
+      <a href="#metodo">Método</a>
+      <a href="#programas">Programas</a>
+      <a href="#credenciales">Credenciales</a>
+    </nav>
+    <a href="#contacto" class="cta-small">Ver programas</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Formación docente acreditada · MEP / Servicio Civil</div>
+      <h1 class="hero-title">El crecimiento del docente, <em>documentado</em> con la misma seriedad que su expediente profesional.</h1>
+      <p class="hero-sub">EduPro combina el marco GROW+ con exigencia técnica y experiencia real de aula, para que cada curso deje evidencia real de avance: en el aula, en el bienestar docente y en el expediente.</p>
+      <div class="hero-actions">
+        <a href="#programas" class="btn-primary">Explorar programas</a>
+        <a href="#metodo" class="btn-ghost">Conocer el método</a>
+      </div>
+    </div>
+    <div class="expediente" aria-hidden="false">
+      <div class="expediente-head">
+        <div>
+          <div class="expediente-folio">FOLIO EP-001 · PAQUETE COMPLETO</div>
+          <div class="expediente-title">1600 Horas de Formación</div>
+        </div>
+      </div>
+      <div class="expediente-row"><span>Cursos incluidos</span><span>8 especializados</span></div>
+      <div class="expediente-row"><span>Horas por curso</span><span>200 horas</span></div>
+      <div class="expediente-row"><span>Modalidad</span><span>100% virtual</span></div>
+      <div class="expediente-row" style="border-bottom:none;"><span>Acreditación</span><span>MEP · Servicio Civil</span></div>
+      <div class="expediente-stamp"><span class="dot"></span> Inscripciones abiertas</div>
+    </div>
+  </div>
+</section>
+
+<div class="credentials" id="credenciales">
+  <div class="wrap cred-row">
+    <span class="cred-item">20+ años en aula</span>
+    <span class="cred-item">Acreditación MEP / Servicio Civil</span>
+  </div>
+</div>
+
+<section id="metodo">
+  <div class="wrap">
+    <div class="section-eyebrow">El método</div>
+    <h2>Tres principios que ordenan cada programa</h2>
+    <p class="lead">Nada de teoría suelta ni fórmulas genéricas de bienestar. Cada curso se construye sobre lo que de verdad cambia la práctica docente.</p>
+  </div>
+  <div class="method-grid">
+    <div class="method-card">
+      <div class="method-letter">I</div>
+      <h3>Aplicabilidad antes que teoría</h3>
+      <p>Cada módulo entrega una herramienta usable en la próxima clase o la próxima reunión de personal — no otro marco conceptual para archivar.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-letter">II</div>
+      <h3>Un marco con estructura, no improvisación</h3>
+      <p>El marco GROW+ guía el proceso: meta, realidad, opciones y voluntad de acción, aplicado específicamente al desgaste y al desarrollo profesional docente.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-letter">III</div>
+      <h3>Evidencia que cuenta para el expediente</h3>
+      <p>Bitácoras, certificados y constancias con el respaldo técnico necesario para presentarse ante MEP, Servicio Civil o procesos de idoneidad.</p>
+    </div>
+  </div>
+</section>
+
+<section class="programs" id="programas">
+  <div class="wrap">
+    <div class="section-eyebrow">Programas activos</div>
+    <h2>Cada expediente empieza con un programa</h2>
+    <p class="lead">Formación integral para docentes, del paquete completo a la preparación técnica para evaluaciones oficiales.</p>
+
+    <div class="package-head">
+      <div class="package-name">Cursos Generales — Paquete Completo</div>
+      <div class="package-total">1600 HORAS · 8 CURSOS ESPECIALIZADOS</div>
+    </div>
+    <div class="course-grid">
+      <div class="course-row"><div class="course-num">01</div><div><div class="course-name">Adecuaciones Curriculares</div><div class="course-hours">200 horas</div></div></div>
+      <div class="course-row"><div class="course-num">02</div><div><div class="course-name">Gestión de Aula para un Aprendizaje Efectivo</div><div class="course-hours">200 horas</div></div></div>
+      <div class="course-row"><div class="course-num">03</div><div><div class="course-name">Educación Emocional y Bienestar en el Aula</div><div class="course-hours">200 horas</div></div></div>
+      <div class="course-row"><div class="course-num">04</div><div><div class="course-name">Evaluación de Tareas y Aprendizajes</div><div class="course-hours">200 horas</div></div></div>
+      <div class="course-row"><div class="course-num">05</div><div><div class="course-name">Educación de Calidad en Costa Rica</div><div class="course-hours">200 horas</div></div></div>
+      <div class="course-row"><div class="course-num">06</div><div><div class="course-name">Investigación en Educación</div><div class="course-hours">200 horas</div></div></div>
+      <div class="course-row"><div class="course-num">07</div><div><div class="course-name">Comunicación con Familias</div><div class="course-hours">200 horas</div></div></div>
+      <div class="course-row"><div class="course-num">08</div><div><div class="course-name">Habilidades Socioemocionales</div><div class="course-hours">200 horas</div></div></div>
+    </div>
+
+    <div class="program-list">
+      <div class="program-row">
+        <div class="p-num">09</div>
+        <div>
+          <div class="p-name">Colección Prueba de Idoneidad Docente</div>
+          <div class="p-desc">Serie de workbooks técnicos para la preparación del examen de competencia docente del MEP, con simulacros incluidos.</div>
+        </div>
+        <div class="p-tag"><a href="simulador-idoneidad.html" style="color:inherit; text-decoration:none;">Ver simulacro →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta" id="contacto">
+  <div class="wrap">
+    <div class="section-eyebrow">Próximo paso</div>
+    <h2>Empecemos su expediente de crecimiento</h2>
+    <p class="lead">Escríbanos para conocer el programa más adecuado según su etapa profesional y sus objetivos con el MEP o el Servicio Civil.</p>
+    <a href="#" class="btn-primary" style="background:var(--navy); color:var(--paper); border-color:var(--navy);">Escribir a @eduprocr</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>EduPro — Educación con Propósito CR</span>
+    <span><a href="https://www.facebook.com/educacionconpropositocr/" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Facebook</a> &nbsp;·&nbsp; @eduprocr</span>
+  </div>
+</footer>
+
+</body>
+</html>

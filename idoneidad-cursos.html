@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cursos | Preparación Idoneidad Docente — EduPro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1E3C; --navy-deep:#071427; --gold:#C9A24B; --gold-soft:#E4D3A3;
+    --paper:#F6F3EC; --ink:#1C2230; --slate:#5F6675; --line:rgba(11,30,60,0.14); --radius:2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; font-size:16px; line-height:1.6;}
+  a{color:inherit;} .mono{font-family:'IBM Plex Mono', monospace;}
+  .wrap{max-width:1000px; margin:0 auto; padding:0 28px;}
+  a:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,236,0.92); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 28px; max-width:1000px; margin:0 auto;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Newsreader', serif; font-weight:600; font-size:1.1rem; color:var(--navy);}
+  .brand .seal{width:28px; height:28px; border-radius:50%; border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', monospace; font-size:0.62rem; color:var(--gold);}
+  .brand .seal-img{width:28px; height:28px; border-radius:50%; border:1.5px solid var(--gold); object-fit:cover; flex-shrink:0; background:#fff;}
+  nav.links{display:flex; gap:26px; font-size:0.86rem; font-weight:500;}
+  nav.links a{text-decoration:none; color:var(--slate);}
+  nav.links a:hover, nav.links a.active{color:var(--navy);}
+  .mobile-hide{display:flex;}
+  @media (max-width:760px){ .mobile-hide{display:none;} }
+  .cta-small{background:var(--navy); color:var(--paper); padding:9px 18px; font-size:0.82rem; font-weight:600; text-decoration:none; border-radius:var(--radius);}
+
+  .page-head{padding:56px 0 20px;}
+  .section-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:0.7rem; letter-spacing:0.12em; color:var(--gold); text-transform:uppercase; margin-bottom:14px;}
+  h1{font-family:'Newsreader', serif; font-weight:500; font-size:clamp(1.8rem, 3.4vw, 2.4rem); color:var(--navy); margin-bottom:14px;}
+  .lead{color:var(--slate); max-width:60ch; margin-bottom:20px;}
+
+  .course-list{padding:20px 0 90px; display:flex; flex-direction:column; gap:16px;}
+  .course-card{background:#fff; border:1px solid var(--line); border-radius:2px; padding:26px 26px; display:grid; grid-template-columns:60px 1fr; gap:20px; align-items:flex-start;}
+  @media (max-width:600px){ .course-card{grid-template-columns:1fr;} }
+  .course-num{font-family:'IBM Plex Mono', monospace; color:var(--gold); font-size:0.9rem;}
+  .course-card h3{font-family:'Newsreader', serif; font-size:1.2rem; color:var(--navy); margin-bottom:8px;}
+  .course-card p{color:var(--slate); font-size:0.9rem; margin-bottom:10px;}
+  .course-topics{display:flex; flex-wrap:wrap; gap:8px;}
+  .topic-tag{font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--navy); border:1px solid var(--line); padding:4px 10px; border-radius:20px;}
+
+  footer{background:var(--navy-deep); color:rgba(246,243,236,0.55); padding:36px 0; font-size:0.82rem;}
+  .foot-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; max-width:1000px; margin:0 auto; padding:0 28px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand"><img src="logo-icon.png" alt="EduPro" class="seal-img"> EduPro</div>
+    <nav class="links mobile-hide">
+      <a href="idoneidad-ventas.html">Inicio</a>
+      <a href="idoneidad-cursos.html" class="active">Cursos</a>
+      <a href="idoneidad-recursos.html">Recursos</a>
+      <a href="idoneidad-simulaciones.html">Simulaciones</a>
+    </nav>
+    <a href="idoneidad-ventas.html#inscripcion" class="cta-small">Inscribirme</a>
+  </div>
+</header>
+
+<div class="wrap page-head">
+  <div class="section-eyebrow">Cursos del programa</div>
+  <h1>Cinco áreas, un solo objetivo</h1>
+  <p class="lead">Cada curso desarrolla una de las áreas evaluadas en la prueba, con contenido aplicado y ejemplos reales de la práctica docente.</p>
+</div>
+
+<div class="wrap course-list">
+  <div class="course-card">
+    <div class="course-num">01</div>
+    <div>
+      <h3>Marco Normativo de la Educación</h3>
+      <p>Principios, deberes y derechos que rigen el ejercicio docente, explicados en lenguaje claro y aplicado a situaciones reales de aula.</p>
+      <div class="course-topics"><span class="topic-tag">Normativa</span><span class="topic-tag">Deberes y derechos</span><span class="topic-tag">Régimen laboral</span></div>
+    </div>
+  </div>
+  <div class="course-card">
+    <div class="course-num">02</div>
+    <div>
+      <h3>Pedagogía y Didáctica</h3>
+      <p>Corrientes pedagógicas, estrategias de mediación y su aplicación práctica en la planificación diaria.</p>
+      <div class="course-topics"><span class="topic-tag">Constructivismo</span><span class="topic-tag">Mediación pedagógica</span><span class="topic-tag">Planeamiento</span></div>
+    </div>
+  </div>
+  <div class="course-card">
+    <div class="course-num">03</div>
+    <div>
+      <h3>Evaluación de los Aprendizajes</h3>
+      <p>Tipos de evaluación, instrumentos y criterios para valorar el aprendizaje de forma justa y coherente con lo enseñado.</p>
+      <div class="course-topics"><span class="topic-tag">Rúbricas</span><span class="topic-tag">Evaluación formativa</span><span class="topic-tag">Instrumentos</span></div>
+    </div>
+  </div>
+  <div class="course-card">
+    <div class="course-num">04</div>
+    <div>
+      <h3>Ética Profesional Docente</h3>
+      <p>Principios éticos del ejercicio docente, manejo de situaciones sensibles y protocolos de actuación responsable.</p>
+      <div class="course-topics"><span class="topic-tag">Confidencialidad</span><span class="topic-tag">Protocolos</span><span class="topic-tag">Responsabilidad profesional</span></div>
+    </div>
+  </div>
+  <div class="course-card">
+    <div class="course-num">05</div>
+    <div>
+      <h3>Metodología de la Investigación Educativa</h3>
+      <p>Diseños de investigación, técnicas de recolección de datos y su relevancia para la mejora continua de la práctica.</p>
+      <div class="course-topics"><span class="topic-tag">Diseños de estudio</span><span class="topic-tag">Recolección de datos</span><span class="topic-tag">Análisis</span></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-row">
+    <span>EduPro — Educación con Propósito CR</span>
+    <span><a href="https://www.facebook.com/educacionconpropositocr/" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Facebook</a> &nbsp;·&nbsp; @eduprocr</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulacro Nivel 1 | Preparación Idoneidad Docente — EduPro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1E3C; --navy-deep:#071427; --gold:#C9A24B; --gold-soft:#E4D3A3;
+    --paper:#F6F3EC; --ink:#1C2230; --slate:#5F6675; --line:rgba(11,30,60,0.14);
+    --ok:#2F7D5C; --bad:#B4453A;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; line-height:1.55;}
+  .display{font-family:'Newsreader', serif;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+
+  header{background:var(--navy); color:var(--paper); padding:18px 24px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:10; border-bottom:1px solid rgba(201,162,75,0.3);}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Newsreader',serif; font-weight:600;}
+  .seal{width:28px; height:28px; border-radius:50%; border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:0.62rem; color:var(--gold); flex-shrink:0;}
+  .seal-img{width:28px; height:28px; border-radius:50%; border:1.5px solid var(--gold); object-fit:cover; flex-shrink:0; background:#fff;}
+  .timer{font-family:'IBM Plex Mono',monospace; font-size:0.95rem; color:var(--gold-soft); letter-spacing:0.04em;}
+  .timer.low{color:#E88;}
+
+  main{max-width:760px; margin:0 auto; padding:36px 20px 80px;}
+
+  /* ----- Intro screen ----- */
+  .screen{display:none;}
+  .screen.active{display:block; animation:fade .4s ease;}
+  @keyframes fade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  .folio-tag{font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase; margin-bottom:14px;}
+  h1{font-family:'Newsreader',serif; font-weight:500; font-size:2rem; color:var(--navy); margin-bottom:14px;}
+  .sub{color:var(--slate); margin-bottom:28px; max-width:56ch;}
+
+  .info-card{background:#fff; border:1px solid var(--line); border-radius:2px; padding:22px 24px; margin-bottom:28px;}
+  .info-row{display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--line); font-size:0.9rem;}
+  .info-row:last-child{border-bottom:none;}
+  .info-row span:first-child{color:var(--slate);}
+  .info-row span:last-child{font-weight:600; color:var(--navy);}
+
+  .btn{display:inline-block; background:var(--navy); color:var(--paper); font-weight:600; font-size:0.92rem; padding:14px 28px; border:none; border-radius:2px; cursor:pointer; transition:transform .15s ease;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn.secondary{background:transparent; color:var(--navy); border:1px solid var(--navy);}
+  .btn.gold{background:var(--gold); color:var(--navy-deep);}
+
+  /* ----- Exam screen ----- */
+  .progress-bar{height:3px; background:var(--line); border-radius:2px; margin-bottom:24px; overflow:hidden;}
+  .progress-fill{height:100%; background:var(--gold); transition:width .3s ease;}
+  .q-meta{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;}
+  .q-count{font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:var(--slate);}
+  .q-area{font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--gold); border:1px solid var(--gold); padding:4px 10px; border-radius:20px; text-transform:uppercase; letter-spacing:0.05em;}
+
+  .q-card{background:#fff; border:1px solid var(--line); border-radius:2px; padding:28px 26px; margin-bottom:22px;}
+  .q-text{font-family:'Newsreader',serif; font-size:1.2rem; color:var(--navy); margin-bottom:22px; line-height:1.45;}
+  .options{display:flex; flex-direction:column; gap:10px;}
+  .option{
+    display:flex; align-items:flex-start; gap:12px; padding:13px 16px;
+    border:1px solid var(--line); border-radius:2px; cursor:pointer; font-size:0.94rem;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .option:hover{border-color:var(--gold);}
+  .option input{margin-top:3px; accent-color:var(--navy); flex-shrink:0;}
+  .option.selected{border-color:var(--navy); background:rgba(11,30,60,0.04);}
+
+  .nav-row{display:flex; justify-content:space-between; gap:12px;}
+
+  /* ----- grid nav ----- */
+  .qgrid{display:flex; flex-wrap:wrap; gap:8px; margin:24px 0 6px;}
+  .qgrid button{
+    width:34px; height:34px; border-radius:2px; border:1px solid var(--line); background:#fff;
+    font-family:'IBM Plex Mono',monospace; font-size:0.75rem; cursor:pointer; color:var(--slate);
+  }
+  .qgrid button.answered{border-color:var(--gold); color:var(--navy); font-weight:600;}
+  .qgrid button.current{background:var(--navy); color:var(--paper); border-color:var(--navy);}
+
+  /* ----- Results ----- */
+  .score-hero{background:var(--navy); color:var(--paper); border-radius:2px; padding:36px 30px; margin-bottom:30px; text-align:center;}
+  .score-num{font-family:'Newsreader',serif; font-size:3.4rem; color:var(--gold-soft); line-height:1;}
+  .score-label{font-family:'IBM Plex Mono',monospace; font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase; color:rgba(246,243,236,0.7); margin-top:8px;}
+
+  .area-list{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line); margin-bottom:30px;}
+  .area-row{display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid var(--line); font-size:0.92rem;}
+  .area-name{color:var(--navy); font-weight:500;}
+  .area-score{font-family:'IBM Plex Mono',monospace; font-size:0.85rem;}
+  .area-score.ok{color:var(--ok);}
+  .area-score.bad{color:var(--bad);}
+
+  .review-item{background:#fff; border:1px solid var(--line); border-radius:2px; padding:20px 22px; margin-bottom:14px;}
+  .review-q{font-family:'Newsreader',serif; color:var(--navy); margin-bottom:10px; font-size:1.02rem;}
+  .review-ans{font-size:0.88rem; padding:6px 0;}
+  .review-ans.correct{color:var(--ok);}
+  .review-ans.incorrect{color:var(--bad); text-decoration:line-through;}
+  .review-explain{font-size:0.85rem; color:var(--slate); margin-top:8px; padding-top:8px; border-top:1px dashed var(--line);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand"><img src="logo-icon.png" alt="EduPro" class="seal-img"> Simulacro · Nivel 1</div>
+  <div class="timer mono" id="timerDisplay">20:00</div>
+</header>
+
+<main>
+
+  <!-- INTRO -->
+  <section class="screen active" id="screen-intro">
+    <div class="folio-tag">Folio SIM-01 · Nivel 1 — Básico</div>
+    <h1>Simulacro Nivel 1</h1>
+    <p class="sub">Preguntas introductorias de las cinco áreas del programa, ideales para diagnosticar dónde reforzar primero. Material de práctica privado de EduPro.</p>
+    <div class="info-card">
+      <div class="info-row"><span>Preguntas</span><span id="infoCount">—</span></div>
+      <div class="info-row"><span>Tiempo asignado</span><span>20 minutos</span></div>
+      <div class="info-row"><span>Áreas cubiertas</span><span>5</span></div>
+      <div class="info-row"><span>Modalidad</span><span>Opción múltiple</span></div>
+    </div>
+    <button class="btn gold" id="btnStart">Iniciar simulacro</button>
+  </section>
+
+  <!-- EXAM -->
+  <section class="screen" id="screen-exam">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div class="q-meta">
+      <span class="q-count" id="qCount">Pregunta 1 de —</span>
+      <span class="q-area" id="qArea">Área</span>
+    </div>
+    <div class="q-card">
+      <div class="q-text" id="qText"></div>
+      <div class="options" id="qOptions"></div>
+    </div>
+    <div class="nav-row">
+      <button class="btn secondary" id="btnPrev">Anterior</button>
+      <button class="btn" id="btnNext">Siguiente</button>
+    </div>
+    <div class="qgrid" id="qGrid"></div>
+    <div style="text-align:center; margin-top:22px;">
+      <button class="btn gold" id="btnFinish">Finalizar y ver resultados</button>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="screen" id="screen-results">
+    <div class="folio-tag">Resultado del simulacro</div>
+    <div class="score-hero">
+      <div class="score-num" id="scoreNum">0%</div>
+      <div class="score-label" id="scoreDetail">0 de 0 correctas</div>
+    </div>
+    <h1 style="font-size:1.3rem;">Desempeño por área</h1>
+    <div class="area-list" id="areaList"></div>
+    <h1 style="font-size:1.3rem;">Revisión de respuestas</h1>
+    <div id="reviewList"></div>
+    <div style="text-align:center; margin-top:10px;">
+      <button class="btn secondary" id="btnRestart">Repetir simulacro</button>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  // ---------- Question bank ----------
+  const bank = [
+    {area:"Marco Normativo", text:"El fin primordial de la educación costarricense, según su marco normativo, es:", options:["Formar ciudadanos aptos para la democracia, conscientes de sus deberes y derechos","Preparar exclusivamente mano de obra técnica para el sector productivo","Garantizar el ingreso universitario de todos los estudiantes","Estandarizar los planes de estudio a nivel centroamericano"], correct:0, explain:"El marco normativo de la educación costarricense establece la formación de ciudadanos para la vida democrática como fin primordial del sistema educativo."},
+    {area:"Marco Normativo", text:"El régimen de empleo del sector docente en Costa Rica se caracteriza principalmente por:", options:["Regular las relaciones de empleo entre el Estado y sus servidores, con nombramientos y garantías propias","No tener ningún tipo de estabilidad laboral","Regirse exclusivamente por contratos privados","Depender de convenios internacionales"], correct:0, explain:"El régimen de empleo público docente regula nombramientos, derechos y deberes de los funcionarios del sector."},
+    {area:"Pedagogía y Didáctica", text:"Un docente diseña actividades donde el estudiantado construye conocimiento a partir de experiencias previas y la interacción social. Este enfoque se identifica principalmente con:", options:["El constructivismo","El conductismo","El enciclopedismo","El enfoque tradicional memorístico"], correct:0, explain:"El constructivismo (Piaget, Vygotsky) plantea que el aprendizaje se construye activamente a partir de la experiencia y la interacción social."},
+    {area:"Pedagogía y Didáctica", text:"La 'zona de desarrollo próximo' de Vygotsky se refiere a:", options:["La distancia entre lo que el estudiante puede hacer solo y lo que puede lograr con guía de otro","El nivel de desarrollo biológico alcanzado por el estudiante","El currículo oficial asignado a un nivel específico","El tiempo que un estudiante tarda en dominar un contenido"], correct:0, explain:"Vygotsky define esta zona como el espacio entre el desempeño autónomo y el desempeño asistido por un mediador."},
+    {area:"Evaluación de los Aprendizajes", text:"Una evaluación que se realiza durante el proceso de enseñanza, con el fin de ajustar la mediación pedagógica, se denomina evaluación:", options:["Formativa","Sumativa","Diagnóstica final","Estandarizada"], correct:0, explain:"La evaluación formativa ocurre durante el proceso y orienta ajustes en la mediación, a diferencia de la sumativa que certifica resultados al final."},
+    {area:"Evaluación de los Aprendizajes", text:"Un instrumento que describe niveles de desempeño y criterios específicos para valorar una tarea compleja se conoce como:", options:["Rúbrica","Prueba objetiva","Lista de cotejo cerrada","Examen escrito tradicional"], correct:0, explain:"La rúbrica organiza criterios y niveles de desempeño, útil para tareas complejas como proyectos o ensayos."},
+    {area:"Ética Profesional", text:"Ante una situación de sospecha de vulneración de derechos de una persona estudiante, la actuación ética y legal del docente es:", options:["Reportar el caso siguiendo los protocolos institucionales establecidos","Resolverlo directamente con la familia sin informar a la institución","Ignorar la situación si no hay evidencia contundente","Esperar a que otro miembro del personal lo reporte"], correct:0, explain:"El deber ético y legal del personal docente es activar los protocolos de protección y reportar, no gestionar el caso de forma individual ni omitir la denuncia."},
+    {area:"Ética Profesional", text:"El principio de confidencialidad en el ejercicio docente implica principalmente:", options:["Proteger la información personal y académica del estudiantado, salvo obligación legal de reportar","No comunicar nunca información a las familias","Compartir información del estudiantado solo con otros docentes","Evitar cualquier registro escrito sobre el estudiantado"], correct:0, explain:"La confidencialidad protege la información del estudiantado, con la excepción de las obligaciones legales de reporte ante situaciones de riesgo."},
+    {area:"Metodología de la Investigación", text:"Un estudio que busca describir las características de un fenómeno educativo sin manipular variables corresponde a un diseño:", options:["Descriptivo","Experimental","Cuasiexperimental","Explicativo causal"], correct:0, explain:"El diseño descriptivo caracteriza un fenómeno tal como se presenta, sin intervención ni manipulación de variables."},
+    {area:"Metodología de la Investigación", text:"La triangulación en investigación educativa se utiliza principalmente para:", options:["Aumentar la validez de los hallazgos combinando distintas fuentes o métodos","Reducir el tamaño de la muestra necesaria","Eliminar la necesidad de un marco teórico","Sustituir el análisis estadístico"], correct:0, explain:"La triangulación combina fuentes, métodos o investigadores para fortalecer la validez y confiabilidad de los resultados."}
+  ];
+
+  let current = 0;
+  let answers = new Array(bank.length).fill(null);
+  let timeLeft = 20*60;
+  let timerId = null;
+
+  const el = id => document.getElementById(id);
+  const screens = {intro: el('screen-intro'), exam: el('screen-exam'), results: el('screen-results')};
+
+  function showScreen(name){
+    Object.values(screens).forEach(s => s.classList.remove('active'));
+    screens[name].classList.add('active');
+  }
+
+  el('infoCount').textContent = bank.length;
+
+  function buildGrid(){
+    const grid = el('qGrid');
+    grid.innerHTML = '';
+    bank.forEach((_, i) => {
+      const b = document.createElement('button');
+      b.textContent = i+1;
+      b.addEventListener('click', () => { current = i; renderQuestion(); });
+      grid.appendChild(b);
+    });
+  }
+
+  function renderQuestion(){
+    const q = bank[current];
+    el('qCount').textContent = `Pregunta ${current+1} de ${bank.length}`;
+    el('qArea').textContent = q.area;
+    el('qText').textContent = q.text;
+    el('progressFill').style.width = `${((current)/bank.length)*100}%`;
+
+    const opsWrap = el('qOptions');
+    opsWrap.innerHTML = '';
+    q.options.forEach((opt, i) => {
+      const label = document.createElement('label');
+      label.className = 'option' + (answers[current]===i ? ' selected' : '');
+      label.innerHTML = `<input type="radio" name="opt" ${answers[current]===i?'checked':''}> <span>${opt}</span>`;
+      label.addEventListener('click', () => {
+        answers[current] = i;
+        renderQuestion();
+      });
+      opsWrap.appendChild(label);
+    });
+
+    // grid state
+    [...el('qGrid').children].forEach((btn, i) => {
+      btn.classList.toggle('answered', answers[i]!==null);
+      btn.classList.toggle('current', i===current);
+    });
+
+    el('btnPrev').disabled = current===0;
+    el('btnNext').style.visibility = current===bank.length-1 ? 'hidden' : 'visible';
+  }
+
+  el('btnStart').addEventListener('click', () => {
+    buildGrid();
+    renderQuestion();
+    showScreen('exam');
+    startTimer();
+  });
+
+  el('btnPrev').addEventListener('click', () => { if(current>0){current--; renderQuestion();} });
+  el('btnNext').addEventListener('click', () => { if(current<bank.length-1){current++; renderQuestion();} });
+  el('btnFinish').addEventListener('click', finishExam);
+  el('btnRestart').addEventListener('click', () => {
+    current = 0; answers = new Array(bank.length).fill(null); timeLeft = 20*60;
+    clearInterval(timerId);
+    el('timerDisplay').classList.remove('low');
+    showScreen('intro');
+  });
+
+  function startTimer(){
+    updateTimerDisplay();
+    timerId = setInterval(() => {
+      timeLeft--;
+      updateTimerDisplay();
+      if(timeLeft<=0){ clearInterval(timerId); finishExam(); }
+    }, 1000);
+  }
+  function updateTimerDisplay(){
+    const m = Math.floor(timeLeft/60), s = timeLeft%60;
+    el('timerDisplay').textContent = `${m}:${s.toString().padStart(2,'0')}`;
+    el('timerDisplay').classList.toggle('low', timeLeft<=60);
+  }
+
+  function finishExam(){
+    clearInterval(timerId);
+    let correctCount = 0;
+    const areaStats = {};
+    bank.forEach((q,i) => {
+      if(!areaStats[q.area]) areaStats[q.area] = {correct:0, total:0};
+      areaStats[q.area].total++;
+      if(answers[i]===q.correct){ correctCount++; areaStats[q.area].correct++; }
+    });
+    const pct = Math.round((correctCount/bank.length)*100);
+    el('scoreNum').textContent = `${pct}%`;
+    el('scoreDetail').textContent = `${correctCount} de ${bank.length} correctas`;
+
+    const areaList = el('areaList');
+    areaList.innerHTML = '';
+    Object.entries(areaStats).forEach(([area, s]) => {
+      const p = Math.round((s.correct/s.total)*100);
+      const row = document.createElement('div');
+      row.className = 'area-row';
+      row.innerHTML = `<span class="area-name">${area}</span><span class="area-score ${p>=60?'ok':'bad'}">${s.correct}/${s.total} · ${p}%</span>`;
+      areaList.appendChild(row);
+    });
+
+    const reviewList = el('reviewList');
+    reviewList.innerHTML = '';
+    bank.forEach((q,i) => {
+      const given = answers[i];
+      const item = document.createElement('div');
+      item.className = 'review-item';
+      const givenText = given===null ? 'Sin responder' : q.options[given];
+      const isCorrect = given===q.correct;
+      item.innerHTML = `
+        <div class="review-q">${i+1}. ${q.text}</div>
+        <div class="review-ans ${isCorrect?'correct':'incorrect'}">Su respuesta: ${givenText}</div>
+        ${!isCorrect ? `<div class="review-ans correct">Correcta: ${q.options[q.correct]}</div>` : ''}
+        <div class="review-explain">${q.explain}</div>
+      `;
+      reviewList.appendChild(item);
+    });
+
+    showScreen('results');
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recursos | Preparación Idoneidad Docente — EduPro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1E3C; --navy-deep:#071427; --gold:#C9A24B; --gold-soft:#E4D3A3;
+    --paper:#F6F3EC; --ink:#1C2230; --slate:#5F6675; --line:rgba(11,30,60,0.14); --radius:2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; font-size:16px; line-height:1.6;}
+  a{color:inherit;} .mono{font-family:'IBM Plex Mono', monospace;}
+  a:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,236,0.92); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 28px; max-width:1000px; margin:0 auto;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Newsreader', serif; font-weight:600; font-size:1.1rem; color:var(--navy);}
+  .brand .seal{width:28px; height:28px; border-radius:50%; border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', monospace; font-size:0.62rem; color:var(--gold);}
+  .brand .seal-img{width:28px; height:28px; border-radius:50%; border:1.5px solid var(--gold); object-fit:cover; flex-shrink:0; background:#fff;}
+  nav.links{display:flex; gap:26px; font-size:0.86rem; font-weight:500;}
+  nav.links a{text-decoration:none; color:var(--slate);}
+  nav.links a:hover, nav.links a.active{color:var(--navy);}
+  .mobile-hide{display:flex;}
+  @media (max-width:760px){ .mobile-hide{display:none;} }
+  .cta-small{background:var(--navy); color:var(--paper); padding:9px 18px; font-size:0.82rem; font-weight:600; text-decoration:none; border-radius:var(--radius);}
+
+  .wrap{max-width:1000px; margin:0 auto; padding:0 28px;}
+  .page-head{padding:56px 0 20px;}
+  .section-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:0.7rem; letter-spacing:0.12em; color:var(--gold); text-transform:uppercase; margin-bottom:14px;}
+  h1{font-family:'Newsreader', serif; font-weight:500; font-size:clamp(1.8rem, 3.4vw, 2.4rem); color:var(--navy); margin-bottom:14px;}
+  .lead{color:var(--slate); max-width:60ch; margin-bottom:20px;}
+
+  .res-grid{padding:20px 0 90px; display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;}
+  @media (max-width:700px){ .res-grid{grid-template-columns:1fr;} }
+  .res-card{background:#fff; border:1px solid var(--line); border-radius:2px; padding:24px; display:flex; flex-direction:column; gap:10px;}
+  .res-type{font-family:'IBM Plex Mono', monospace; font-size:0.66rem; color:var(--gold); text-transform:uppercase; letter-spacing:0.08em;}
+  .res-card h3{font-family:'Newsreader', serif; font-size:1.1rem; color:var(--navy);}
+  .res-card p{color:var(--slate); font-size:0.88rem; flex-grow:1;}
+  .res-status{font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:var(--navy); border-top:1px dashed var(--line); padding-top:10px; margin-top:4px;}
+
+  footer{background:var(--navy-deep); color:rgba(246,243,236,0.55); padding:36px 0; font-size:0.82rem;}
+  .foot-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; max-width:1000px; margin:0 auto; padding:0 28px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand"><img src="logo-icon.png" alt="EduPro" class="seal-img"> EduPro</div>
+    <nav class="links mobile-hide">
+      <a href="idoneidad-ventas.html">Inicio</a>
+      <a href="idoneidad-cursos.html">Cursos</a>
+      <a href="idoneidad-recursos.html" class="active">Recursos</a>
+      <a href="idoneidad-simulaciones.html">Simulaciones</a>
+    </nav>
+    <a href="idoneidad-ventas.html#inscripcion" class="cta-small">Inscribirme</a>
+  </div>
+</header>
+
+<div class="wrap page-head">
+  <div class="section-eyebrow">Recursos de estudio</div>
+  <h1>Material de apoyo para repasar a su ritmo</h1>
+  <p class="lead">Guías, resúmenes y bancos de práctica pensados para complementar los cursos y reforzar los temas donde más lo necesite.</p>
+</div>
+
+<div class="wrap res-grid">
+  <div class="res-card">
+    <div class="res-type">Guía descargable</div>
+    <h3>Glosario de términos clave</h3>
+    <p>Definiciones claras de los conceptos que más se repiten en las cinco áreas del programa.</p>
+    <div class="res-status">Incluido con la inscripción</div>
+  </div>
+  <div class="res-card">
+    <div class="res-type">Resumen</div>
+    <h3>Mapas conceptuales por área</h3>
+    <p>Un mapa visual por cada curso, para repasar rápido antes de un simulacro.</p>
+    <div class="res-status">Incluido con la inscripción</div>
+  </div>
+  <div class="res-card">
+    <div class="res-type">Checklist</div>
+    <h3>Plan de estudio de 6 semanas</h3>
+    <p>Una ruta semana a semana para distribuir el repaso de los cinco cursos antes del examen.</p>
+    <div class="res-status">Incluido con la inscripción</div>
+  </div>
+  <div class="res-card">
+    <div class="res-type">Banco de práctica</div>
+    <h3>Preguntas sueltas por tema</h3>
+    <p>Preguntas cortas de repaso rápido, separadas por tema, para practicar entre simulacros.</p>
+    <div class="res-status">Incluido con la inscripción</div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-row">
+    <span>EduPro — Educación con Propósito CR</span>
+    <span><a href="https://www.facebook.com/educacionconpropositocr/" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Facebook</a> &nbsp;·&nbsp; @eduprocr</span>
+  </div>
+</footer>
+
+</body>
+</html>

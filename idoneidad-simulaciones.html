@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulaciones | Preparación Idoneidad Docente — EduPro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1E3C; --navy-deep:#071427; --gold:#C9A24B; --gold-soft:#E4D3A3;
+    --paper:#F6F3EC; --ink:#1C2230; --slate:#5F6675; --line:rgba(11,30,60,0.14); --radius:2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; font-size:16px; line-height:1.6;}
+  a{color:inherit;} .mono{font-family:'IBM Plex Mono', monospace;}
+  a:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,236,0.92); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 28px; max-width:1000px; margin:0 auto;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Newsreader', serif; font-weight:600; font-size:1.1rem; color:var(--navy);}
+  .brand .seal{width:28px; height:28px; border-radius:50%; border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', monospace; font-size:0.62rem; color:var(--gold);}
+  .brand .seal-img{width:28px; height:28px; border-radius:50%; border:1.5px solid var(--gold); object-fit:cover; flex-shrink:0; background:#fff;}
+  nav.links{display:flex; gap:26px; font-size:0.86rem; font-weight:500;}
+  nav.links a{text-decoration:none; color:var(--slate);}
+  nav.links a:hover, nav.links a.active{color:var(--navy);}
+  .mobile-hide{display:flex;}
+  @media (max-width:760px){ .mobile-hide{display:none;} }
+  .cta-small{background:var(--navy); color:var(--paper); padding:9px 18px; font-size:0.82rem; font-weight:600; text-decoration:none; border-radius:var(--radius);}
+
+  .wrap{max-width:1000px; margin:0 auto; padding:0 28px;}
+  .page-head{padding:56px 0 20px;}
+  .section-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:0.7rem; letter-spacing:0.12em; color:var(--gold); text-transform:uppercase; margin-bottom:14px;}
+  h1{font-family:'Newsreader', serif; font-weight:500; font-size:clamp(1.8rem, 3.4vw, 2.4rem); color:var(--navy); margin-bottom:14px;}
+  .lead{color:var(--slate); max-width:60ch; margin-bottom:20px;}
+
+  .level-list{padding:20px 0 90px; display:flex; flex-direction:column; gap:16px;}
+  .level-card{background:#fff; border:1px solid var(--line); border-radius:2px; padding:28px 26px; display:grid; grid-template-columns:90px 1fr auto; gap:22px; align-items:center; text-decoration:none; color:inherit; transition:border-color .2s ease;}
+  .level-card:hover{border-color:var(--gold);}
+  .level-card.disabled{opacity:0.55; pointer-events:none;}
+  @media (max-width:640px){ .level-card{grid-template-columns:1fr; text-align:left;} }
+  .level-badge{font-family:'Newsreader', serif; font-size:2rem; color:var(--gold); font-weight:600;}
+  .level-card h3{font-family:'Newsreader', serif; font-size:1.15rem; color:var(--navy); margin-bottom:6px;}
+  .level-card p{color:var(--slate); font-size:0.88rem;}
+  .level-cta{font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--navy); font-weight:600; white-space:nowrap;}
+  .level-cta.soon{color:var(--slate);}
+
+  footer{background:var(--navy-deep); color:rgba(246,243,236,0.55); padding:36px 0; font-size:0.82rem;}
+  .foot-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; max-width:1000px; margin:0 auto; padding:0 28px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand"><img src="logo-icon.png" alt="EduPro" class="seal-img"> EduPro</div>
+    <nav class="links mobile-hide">
+      <a href="idoneidad-ventas.html">Inicio</a>
+      <a href="idoneidad-cursos.html">Cursos</a>
+      <a href="idoneidad-recursos.html">Recursos</a>
+      <a href="idoneidad-simulaciones.html" class="active">Simulaciones</a>
+    </nav>
+    <a href="idoneidad-ventas.html#inscripcion" class="cta-small">Inscribirme</a>
+  </div>
+</header>
+
+<div class="wrap page-head">
+  <div class="section-eyebrow">Simulacros de práctica</div>
+  <h1>Practique bajo condiciones de examen, por nivel</h1>
+  <p class="lead">Cada nivel sube la dificultad. Empiece por el Nivel 1 y avance según se sienta preparado.</p>
+</div>
+
+<div class="wrap level-list">
+  <a href="simulador-nivel1.html" class="level-card">
+    <div class="level-badge">01</div>
+    <div>
+      <h3>Nivel 1 — Básico</h3>
+      <p>Preguntas introductorias de las cinco áreas, ideales para diagnosticar dónde reforzar primero.</p>
+    </div>
+    <div class="level-cta">Iniciar simulacro →</div>
+  </a>
+  <a href="simulador-nivel2.html" class="level-card">
+    <div class="level-badge">02</div>
+    <div>
+      <h3>Nivel 2 — Intermedio</h3>
+      <p>Preguntas de aplicación práctica, con casos y situaciones más cercanas al examen real.</p>
+    </div>
+    <div class="level-cta">Iniciar simulacro →</div>
+  </a>
+  <div class="level-card disabled">
+    <div class="level-badge">03</div>
+    <div>
+      <h3>Nivel 3 — Avanzado</h3>
+      <p>Simulacro de mayor exigencia, próximamente disponible dentro del programa.</p>
+    </div>
+    <div class="level-cta soon">Próximamente</div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-row">
+    <span>EduPro — Educación con Propósito CR</span>
+    <span><a href="https://www.facebook.com/educacionconpropositocr/" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Facebook</a> &nbsp;·&nbsp; @eduprocr</span>
+  </div>
+</footer>
+
+</body>
+</html>
