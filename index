@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prueba de Idoneidad Docente | EduPro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1E3C; --navy-deep:#071427; --gold:#C9A24B; --gold-soft:#E4D3A3;
+    --paper:#F6F3EC; --ink:#1C2230; --slate:#5F6675; --line:rgba(11,30,60,0.14); --radius:2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  .display{font-family:'Newsreader', serif;} .mono{font-family:'IBM Plex Mono', monospace; letter-spacing:0.04em;}
+  a{color:inherit;} img{max-width:100%; display:block;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,236,0.92); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 28px;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Newsreader', serif; font-weight:600; font-size:1.1rem; color:var(--navy);}
+  .brand .seal{width:28px; height:28px; border-radius:50%; border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', monospace; font-size:0.62rem; color:var(--gold); flex-shrink:0;}
+  .brand .seal-img{width:28px; height:28px; border-radius:50%; border:1.5px solid var(--gold); object-fit:cover; flex-shrink:0; background:#fff;}
+  nav.links{display:flex; gap:26px; font-size:0.86rem; font-weight:500;}
+  nav.links a{text-decoration:none; color:var(--slate); transition:color .2s;}
+  nav.links a:hover, nav.links a.active{color:var(--navy);}
+  .cta-small{background:var(--navy); color:var(--paper); padding:9px 18px; font-size:0.82rem; font-weight:600; text-decoration:none; border-radius:var(--radius); border:1px solid var(--navy); white-space:nowrap;}
+  .mobile-hide{display:flex;}
+  @media (max-width:760px){ .mobile-hide{display:none;} }
+
+  .hero{background:linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%); color:var(--paper); padding:80px 0 90px; position:relative; overflow:hidden;}
+  .hero::before{content:""; position:absolute; inset:0; background-image:repeating-linear-gradient(0deg, rgba(201,162,75,0.05) 0px, rgba(201,162,75,0.05) 1px, transparent 1px, transparent 42px); pointer-events:none;}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center; position:relative;}
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr; gap:44px;} }
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.14em; color:var(--gold-soft); text-transform:uppercase; margin-bottom:18px;}
+  h1.hero-title{font-family:'Newsreader', serif; font-weight:500; font-size:clamp(2rem, 4.2vw, 3rem); line-height:1.18; letter-spacing:-0.01em; margin-bottom:20px;}
+  h1.hero-title em{font-style:italic; color:var(--gold-soft);}
+  .hero-sub{font-size:1.03rem; color:rgba(246,243,236,0.78); max-width:48ch; margin-bottom:32px;}
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{background:var(--gold); color:var(--navy-deep); font-weight:700; font-size:0.92rem; padding:14px 26px; text-decoration:none; border-radius:var(--radius); border:1px solid var(--gold); transition:transform .18s ease, box-shadow .18s ease; display:inline-block;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(201,162,75,0.25);}
+  .btn-ghost{color:var(--paper); font-weight:600; font-size:0.92rem; padding:14px 22px; text-decoration:none; border:1px solid rgba(246,243,236,0.35); border-radius:var(--radius); transition:border-color .18s ease, background .18s ease; display:inline-block;}
+  .btn-ghost:hover{border-color:var(--gold-soft); background:rgba(246,243,236,0.06);}
+
+  .expediente{background:var(--paper); color:var(--ink); border-radius:3px; padding:28px 26px 24px; box-shadow:0 30px 60px rgba(0,0,0,0.35); position:relative; transform:rotate(1.2deg);}
+  .expediente::after{content:""; position:absolute; top:16px; right:16px; width:48px; height:48px; border:1.5px dashed var(--gold); border-radius:50%;}
+  .expediente-folio{font-family:'IBM Plex Mono', monospace; font-size:0.66rem; color:var(--slate); letter-spacing:0.06em;}
+  .expediente-title{font-family:'Newsreader', serif; font-size:1.3rem; font-weight:600; color:var(--navy); margin:4px 0 16px;}
+  .expediente-row{display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--line); font-size:0.85rem;}
+  .expediente-row span:first-child{color:var(--slate);} .expediente-row span:last-child{font-weight:600; color:var(--navy);}
+  .expediente-stamp{margin-top:18px; display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono', monospace; font-size:0.66rem; color:var(--gold); border:1px solid var(--gold); padding:6px 12px; border-radius:20px;}
+  .expediente-stamp .dot{width:6px; height:6px; border-radius:50%; background:var(--gold);}
+
+  .trust-strip{background:var(--navy-deep); border-top:1px solid rgba(201,162,75,0.2); padding:20px 0;}
+  .trust-row{display:flex; flex-wrap:wrap; gap:30px; justify-content:center;}
+  .trust-item{font-family:'IBM Plex Mono', monospace; font-size:0.7rem; letter-spacing:0.08em; color:rgba(246,243,236,0.65); text-transform:uppercase;}
+
+  section{padding:80px 0;}
+  .section-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:0.7rem; letter-spacing:0.12em; color:var(--gold); text-transform:uppercase; margin-bottom:14px;}
+  h2{font-family:'Newsreader', serif; font-weight:500; font-size:clamp(1.5rem, 2.8vw, 2.1rem); color:var(--navy); margin-bottom:16px; max-width:24ch;}
+  .lead{color:var(--slate); font-size:1rem; max-width:58ch; margin-bottom:40px;}
+
+  .path-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  @media (max-width:800px){ .path-grid{grid-template-columns:1fr;} }
+  .path-card{background:var(--paper); padding:30px 26px; text-decoration:none; color:inherit; transition:background .2s ease;}
+  .path-card:hover{background:#fff;}
+  .path-num{font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--gold); margin-bottom:12px; display:block;}
+  .path-card h3{font-family:'Newsreader', serif; font-size:1.2rem; font-weight:600; color:var(--navy); margin-bottom:8px;}
+  .path-card p{color:var(--slate); font-size:0.88rem; margin-bottom:14px;}
+  .path-link{font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--navy); font-weight:600;}
+
+  .why{background:var(--navy); color:var(--paper);}
+  .why h2{color:var(--paper);} .why .lead{color:rgba(246,243,236,0.7);}
+  .why-list{display:flex; flex-direction:column; border-top:1px solid rgba(246,243,236,0.15);}
+  .why-row{display:grid; grid-template-columns:60px 1fr; gap:18px; padding:24px 0; border-bottom:1px solid rgba(246,243,236,0.15);}
+  .why-num{font-family:'IBM Plex Mono', monospace; color:var(--gold); font-size:0.85rem;}
+  .why-row h4{font-family:'Newsreader', serif; font-size:1.1rem; font-weight:500; margin-bottom:6px;}
+  .why-row p{color:rgba(246,243,236,0.65); font-size:0.9rem; max-width:56ch;}
+
+  .pricing{text-align:center;}
+  .price-card{background:#fff; border:1px solid var(--line); max-width:420px; margin:0 auto; padding:38px 32px; border-radius:2px;}
+  .price-num{font-family:'Newsreader', serif; font-size:2.6rem; color:var(--navy);}
+  .price-note{font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--slate); margin-bottom:22px;}
+  .price-list{text-align:left; list-style:none; margin-bottom:26px;}
+  .price-list li{padding:9px 0; border-bottom:1px solid var(--line); font-size:0.9rem; display:flex; gap:10px;}
+  .price-list li::before{content:"—"; color:var(--gold);}
+  .sinpe-note{margin-top:18px; padding-top:16px; border-top:1px dashed var(--line); display:flex; flex-direction:column; align-items:center; gap:4px;}
+  .sinpe-label{font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.08em; color:var(--slate); text-transform:uppercase;}
+  .sinpe-number{font-family:'IBM Plex Mono', monospace; font-size:1.05rem; color:var(--navy); font-weight:600;}
+
+  footer{background:var(--navy-deep); color:rgba(246,243,236,0.55); padding:36px 0; font-size:0.82rem;}
+  .foot-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <div class="brand"><img src="logo-icon.png" alt="EduPro" class="seal-img"> EduPro</div>
+    <nav class="links mobile-hide">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="idoneidad-cursos.html">Cursos</a>
+      <a href="idoneidad-recursos.html">Recursos</a>
+      <a href="idoneidad-simulaciones.html">Simulaciones</a>
+    </nav>
+    <a href="#inscripcion" class="cta-small">Inscribirme</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Preparación privada · EduPro</div>
+      <h1 class="hero-title">Llegue a la Prueba de Idoneidad Docente con una <em>preparación real</em>, no con suerte.</h1>
+      <p class="hero-sub">Un programa privado de EduPro con cursos, recursos de estudio y simulacros por nivel, diseñado por una docente con más de 20 años de experiencia en aula.</p>
+      <div class="hero-actions">
+        <a href="#inscripcion" class="btn-primary">Quiero inscribirme</a>
+        <a href="idoneidad-simulaciones.html" class="btn-ghost">Probar un simulacro</a>
+      </div>
+    </div>
+    <div class="expediente">
+      <div class="expediente-folio">FOLIO EP-ID · PROGRAMA PRIVADO</div>
+      <div class="expediente-title">Preparación Idoneidad Docente</div>
+      <div class="expediente-row"><span>Modalidad</span><span>100% virtual</span></div>
+      <div class="expediente-row"><span>Incluye</span><span>Cursos + recursos + simulacros</span></div>
+      <div class="expediente-row" style="border-bottom:none;"><span>Niveles de simulacro</span><span>1, 2 y siguientes</span></div>
+      <div class="expediente-stamp"><span class="dot"></span> Cupo abierto</div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="wrap trust-row">
+    <span class="trust-item">Servicio privado de EduPro</span>
+    <span class="trust-item">20+ años de experiencia en aula</span>
+    <span class="trust-item">Simulacros por nivel de dificultad</span>
+  </div>
+</div>
+
+<section id="programa">
+  <div class="wrap">
+    <div class="section-eyebrow">El programa</div>
+    <h2>Tres piezas, un mismo camino de preparación</h2>
+    <p class="lead">Cada parte del programa tiene su propio espacio, para que pueda avanzar a su ritmo y volver cuando lo necesite.</p>
+  </div>
+  <div class="path-grid">
+    <a href="idoneidad-cursos.html" class="path-card">
+      <span class="path-num">01 · CURSOS</span>
+      <h3>Cursos temáticos</h3>
+      <p>Contenido organizado por área de conocimiento, con explicaciones claras y ejemplos aplicados.</p>
+      <span class="path-link">Ver cursos →</span>
+    </a>
+    <a href="idoneidad-recursos.html" class="path-card">
+      <span class="path-num">02 · RECURSOS</span>
+      <h3>Recursos de estudio</h3>
+      <p>Guías, resúmenes y bancos de práctica descargables para repasar en cualquier momento.</p>
+      <span class="path-link">Ver recursos →</span>
+    </a>
+    <a href="idoneidad-simulaciones.html" class="path-card">
+      <span class="path-num">03 · SIMULACROS</span>
+      <h3>Simulacros por nivel</h3>
+      <p>Practique bajo condiciones de examen, con niveles que aumentan en dificultad.</p>
+      <span class="path-link">Ver simulacros →</span>
+    </a>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <div class="section-eyebrow">Por qué EduPro</div>
+    <h2>Un programa hecho desde el aula, no desde una plantilla</h2>
+    <p class="lead">Nada de contenido genérico. Cada recurso responde a lo que realmente se necesita para llegar preparado.</p>
+    <div class="why-list">
+      <div class="why-row">
+        <div class="why-num">01</div>
+        <div><h4>Diseñado por quien ha estado en el aula</h4><p>Más de 20 años de experiencia docente respaldan cada curso y cada recurso del programa.</p></div>
+      </div>
+      <div class="why-row">
+        <div class="why-num">02</div>
+        <div><h4>Práctica progresiva, no un solo intento</h4><p>Los simulacros avanzan por nivel, para que la dificultad crezca junto con su preparación.</p></div>
+      </div>
+      <div class="why-row">
+        <div class="why-num">03</div>
+        <div><h4>Servicio privado e independiente</h4><p>Un programa de preparación propio de EduPro, sin intermediarios ni afiliaciones institucionales.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="inscripcion">
+  <div class="wrap">
+    <div class="section-eyebrow">Inscripción</div>
+    <h2 style="margin:0 auto 34px; max-width:none;">Acceso completo al programa</h2>
+    <div class="price-card">
+      <div class="price-num">Acceso completo</div>
+      <div class="price-note">PROGRAMA PRIVADO · PAGO ÚNICO</div>
+      <ul class="price-list">
+        <li>Todos los cursos temáticos</li>
+        <li>Recursos de estudio descargables</li>
+        <li>Simulacros de todos los niveles</li>
+        <li>Actualizaciones incluidas</li>
+      </ul>
+      <a href="https://www.facebook.com/educacionconpropositocr/" target="_blank" rel="noopener" class="btn-primary" style="width:100%; text-align:center;">Escribir a EduPro por Facebook</a>
+      <div class="sinpe-note">
+        <span class="sinpe-label">SINPE Móvil</span>
+        <span class="sinpe-number">+506 8741 6900</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>EduPro — Educación con Propósito CR</span>
+    <span><a href="https://www.facebook.com/educacionconpropositocr/" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Facebook</a> &nbsp;·&nbsp; @eduprocr</span>
+  </div>
+</footer>
+
+</body>
+</html>
